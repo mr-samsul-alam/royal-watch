@@ -16,7 +16,7 @@ const ReviewCard = (props) => {
 
                 <CardContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={11} md={11} variant="body2" style={{ padding: '50px' }} color="text.secondary">
+                        <Grid item xs={11} md={11} variant="body2"   color="text.secondary">
                             <div style={{ width: "100%", height: 150, overflowY: "auto" }}>
                                 {decription}
                             </div>

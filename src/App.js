@@ -51,7 +51,7 @@ function App() {
           <Route path="signIn" element={<SignIn />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
-        <Footer></Footer>
+        <Footer ></Footer>
         {/* </AuthProvider> */}
       </BrowserRouter>
 

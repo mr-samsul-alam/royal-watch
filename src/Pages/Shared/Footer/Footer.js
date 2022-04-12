@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import {
     Box,
@@ -11,14 +12,16 @@ import {
 const Footer = () => {
     return (
         <Box>
-            
+
             <Container>
                 <Row>
                     <Column>
                         <Heading>About Us</Heading>
-                        <FooterLink href="#">Aim</FooterLink>
-                        <FooterLink href="#">Vision</FooterLink>
-                        <FooterLink href="#">Testimonials</FooterLink>
+
+                        <FooterLink> <Typography>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae, minima?
+                        </Typography></FooterLink>
+                        <FooterLink href="/home#review">Testimonials</FooterLink>
                     </Column>
                     <Column>
                         <Heading>Services</Heading>
