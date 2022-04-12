@@ -17,8 +17,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ReviewsIcon from '@mui/icons-material/Reviews';
+import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -53,6 +55,8 @@ function Dashboard(props) {
                     break;
                 case "Manage Order": navigate('/dashboard/manageOrder')
                     break;
+                case "Update Product": navigate('/dashboard/updateProduct')
+                    break;
                 default: navigate('/dashboard')
             }
         }
@@ -70,7 +74,7 @@ function Dashboard(props) {
             }
 
         }
-     
+
 
     }
 
@@ -89,16 +93,19 @@ function Dashboard(props) {
             <Divider />
             <List>
                 {
-                    admin ? ['Home', 'DashBoard', 'My Cart', 'Give Review', "Add Products", "Manage Order", "Make Admin"].map((text, index) => (
+                    admin ? ['Home', 'DashBoard', 'My Cart', 'Give Review', " ", "Add Products", "Update Product", "Manage Order", "Make Admin",].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
                                 {index === 0 && <ArrowBackIcon />}
                                 {index === 1 && <DashboardIcon />}
                                 {index === 2 && <AddShoppingCartIcon />}
                                 {index === 3 && <ReviewsIcon />}
-                                {index === 4 && <AddCircleIcon />}
-                                {index === 5 && <ManageHistoryIcon />}
-                                {index === 6 && <AdminPanelSettingsIcon />}
+                                {index === 4 && <hr style={{ width:"500px", color: '#D8C3A5' }} />}
+                                {index === 5 && <AddCircleIcon />}
+                                {index === 6 && <UpdateOutlinedIcon />}
+                                {index === 7 && <ManageHistoryIcon />}
+                                {index === 8 && <AdminPanelSettingsIcon />}
+                                {index === 9 && <UpdateOutlinedIcon />}
                             </ListItemIcon>
                             <ListItemText primary={text} onClick={() => handleRoute(text)} />
                         </ListItem>
@@ -113,7 +120,8 @@ function Dashboard(props) {
                                     {index === 3 && <InboxIcon />}
                                     {index === 4 && <AddCircleIcon />}
                                 </ListItemIcon>
-                                <ListItemText primary={text} onClick={() => handleRoute(text,  )} />
+                                <ListItemText primary={text} onClick={() => handleRoute(text)} />
+
                             </ListItem>
                         ))
                 }
@@ -173,7 +181,7 @@ function Dashboard(props) {
                     variant="permanent"
                     sx={{
                         display: { xs: 'none', color: "green", sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: "500px" },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, height: "600px" },
                     }}
                     open
                 >

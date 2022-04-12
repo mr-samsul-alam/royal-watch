@@ -15,6 +15,7 @@ import MyCart from './Pages/DashBoardPage/MyCart/MyCart';
 import AddProducts from './Pages/DashBoardPage/AddProducts/AddProducts';
 import ManageOrder from './Pages/DashBoardPage/ManageOrder/ManageOrder';
 import MakeAdmin from './Pages/DashBoardPage/MakeAdmin/MakeAdmin';
+import UpdateProduct from './Pages/DashBoardPage/UpdateProduct/UpdateProduct';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path={"/dashboard/addProducts"} element={<PrivateRoute><AddProducts /></PrivateRoute>}></Route>
             <Route path={"/dashboard/manageOrder"} element={<PrivateRoute><ManageOrder /></PrivateRoute>}> </Route>
             <Route path={"/dashboard/makeAdmin"} element={<PrivateRoute><MakeAdmin /></PrivateRoute>}></Route>
+            <Route path={"/dashboard/updateProduct"} element={<PrivateRoute><UpdateProduct /></PrivateRoute>}></Route>
 
           </Route>
 

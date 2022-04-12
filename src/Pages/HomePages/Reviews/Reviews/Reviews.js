@@ -9,13 +9,17 @@ const Reviews = () => {
         fetch('/fake_review.json')
             .then(res => res.json())
             .then(data => setReviews(data))
-        
+
     }, [])
     console.log(reviews);
 
     return (
-        <Container  >
-            <Typography variant='h3'> What people Say about Us</Typography>
+        <Container style={{ padding: '50px' }} >
+            <Typography variant="div" style={{ textAlign: 'center' }}>
+                <Typography variant='h3' style={{ fontWeight: "bolder" }}>
+                    <span style={{ color: '#D8C3A5' }}>PEOPLE'S</span> REVIEW
+                </Typography>
+            </Typography>
             <Grid container spacing={2}>
                 {
                     reviews.map(review => <ReviewCard key={review._id} review={review} ></ReviewCard>)
