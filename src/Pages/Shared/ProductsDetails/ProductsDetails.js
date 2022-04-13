@@ -5,9 +5,7 @@ import DetailsThumb from './DetailsThumb';
  
 
 
-class ProductsDetails extends React.Component {
-
-
+class ProductsDetails extends React.Component { 
     
     state = {
         products: [

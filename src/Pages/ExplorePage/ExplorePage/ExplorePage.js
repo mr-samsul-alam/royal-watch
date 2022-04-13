@@ -6,7 +6,7 @@ import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 const ExplorePage = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
-        fetch('/fake_product_data.json')
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -16,7 +16,7 @@ const ExplorePage = () => {
             <Container>
                 <Grid container spacing={2}>
                     {
-                        products.map(review => <Products4SaleCard key={review._id} review={review} ></Products4SaleCard>)
+                        products.map(product => <Products4SaleCard key={product._id} product={product} ></Products4SaleCard>)
                     }
                 </Grid>
             </Container>

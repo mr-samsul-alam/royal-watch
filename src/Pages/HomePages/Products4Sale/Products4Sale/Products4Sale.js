@@ -4,13 +4,15 @@ import Products4SaleCard from '../Products4SaleCard/Products4SaleCard';
 
 const Products4Sale = () => {
     const [products, setProducts] = useState([]);
-
-
     useEffect(() => {
-        fetch('/fake_product_data.json')
-            .then(res => res.json())
-            .then(data => setProducts(data.slice(0, 6)))
+        const hello = async () => {
+            await fetch('http://localhost:5000/products')
+                .then(res => res.json())
+                .then(data => setProducts(data.slice(0, 6)))
+        }
+        hello()
     }, [])
+
     console.log(products);
 
     return (
@@ -27,7 +29,7 @@ const Products4Sale = () => {
 
             <Grid container spacing={2}>
                 {
-                    products.map(review => <Products4SaleCard key={review._id} review={review} ></Products4SaleCard>)
+                    products.map(product => <Products4SaleCard key={product._id} product={product} ></Products4SaleCard>)
                 }
             </Grid>
         </Container>

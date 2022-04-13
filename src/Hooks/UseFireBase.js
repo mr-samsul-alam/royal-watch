@@ -63,8 +63,7 @@ const UseFireBase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/';
-                console.log(destination);
+                const destination = location?.state?.from || '/'; 
                 navigate(destination);
                 setAuthError('');
             })
@@ -80,8 +79,7 @@ const UseFireBase = () => {
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
-    
-    console.log(admin);
+     
 
 
 

@@ -22,15 +22,18 @@ const cardOnHover = ({ hover }) => ({
 
 const Products4SaleCard = (props) => {
     const navigate = useNavigate();
-    const { _id, isAvailable, price, src, name, rating, company, about, quantity, type, Sub_Type } = props.review
+    // const { _id, rating } = props.product
+    const { _id, price, name, main_picture, rating, company, quantity } = props.product || []
     const [hover, setHover] = useState(false)
+
+    console.log(props.product);
     const goToDetails = (id) => {
         navigate(`/product/${_id}`)
     }
     return (
         <Grid item xs={12} md={4} style={{ paddingTop: "30px", }}   >
             {/* <Box sx={{ mx: '2px', transform: 'scale(0.8)' }}> */}
-            <ButtonBase onClick={() => goToDetails(_id)}>
+            <ButtonBase onClick={() => goToDetails(_id)} >
                 {/* elevation={24} variant='elevation' */}
                 <Card style={cardOnHover({ hover })}
                     onPointerOver={() => setHover(true)}
@@ -40,7 +43,7 @@ const Products4SaleCard = (props) => {
                     <CardMedia
                         component="img"
                         height="100%"
-                        image={src[0]}
+                        image={main_picture}
                         alt="green iguana"
                     />
                     <CardContent>
@@ -53,7 +56,7 @@ const Products4SaleCard = (props) => {
                                 <Rating name="half-rating-read" style={{ color: '#D8C3A5' }} defaultValue={parseFloat(rating)} precision={0.5} readOnly />
                             </Typography>
                             <Typography style={{ fontSize: "1.5rem" }} >
-                                <b>{price}</b>
+                                <b>${price}</b>
                             </Typography>
                         </Typography>
 
