@@ -17,7 +17,9 @@ const AddProducts = () => {
 
     const handleBookingSubmit = e => {
         // send to the server
-        fetch('https://mighty-woodland-10467.herokuapp.com/products', {
+
+        console.log(bookingInfo)
+        fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -45,6 +47,7 @@ const AddProducts = () => {
             <form onSubmit={handleBookingSubmit}>
 
                 <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
                     name="main_picture"
@@ -53,7 +56,8 @@ const AddProducts = () => {
                     size="small"
                 />
                 <TextField
-                    sx={{ width: '10%', m: 1 }}
+                    required
+                    sx={{ width: '30%', m: 1 }}
                     id="outlined-size-small"
                     name="picture1"
                     label="1'st Picture"
@@ -61,7 +65,8 @@ const AddProducts = () => {
                     size="small"
                 />
                 <TextField
-                    sx={{ width: '10%', m: 1 }}
+                    required
+                    sx={{ width: '30%', m: 1 }}
                     id="outlined-size-small"
                     name="picture2"
                     label="2'nd Picture"
@@ -69,46 +74,35 @@ const AddProducts = () => {
                     size="small"
                 />
                 <TextField
-                    sx={{ width: '10%', m: 1 }}
+                    required
+                    sx={{ width: '30%', m: 1 }}
                     id="outlined-size-small"
                     name="picture3"
                     label="3'rd Picture"
                     onBlur={handleOnBlur}
                     size="small"
                 />
+
                 <TextField
-                    sx={{ width: '10%', m: 1 }}
-                    id="outlined-size-small"
-                    name="picture4"
-                    label="4'th Picture"
-                    onBlur={handleOnBlur}
-                    size="small"
-                />
-                <TextField
-                    sx={{ width: '10%', m: 1 }}
-                    id="outlined-size-small"
-                    name="picture5"
-                    label="5'th Picture"
-                    onBlur={handleOnBlur}
-                    size="small"
-                />
-                <TextField
-                    sx={{ width: '10%', m: 1 }}
-                    id="outlined-size-small"
-                    name="picture6"
-                    label="6'th Picture"
-                    onBlur={handleOnBlur}
-                    size="small"
-                />
-                <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
-                    label="Package Name"
-                    name="package_name"
+                    label="Products Name"
+                    name="name"
                     onBlur={handleOnBlur}
                     size="small"
                 />
                 <TextField
+                    required
+                    sx={{ width: '90%', m: 1 }}
+                    id="outlined-size-small"
+                    label="Sub Category"
+                    name="sub_category"
+                    onBlur={handleOnBlur}
+                    size="small"
+                />
+                <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
                     label="Description"
@@ -117,34 +111,29 @@ const AddProducts = () => {
                     size="small"
                 />
                 <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
-                    name="overview"
-                    label="Write OverView"
+                    name="company"
+                    label="Company Name"
                     onBlur={handleOnBlur}
                     size="small"
                 />
                 <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
                     name="price"
-                    label="Package Price"
+                    label=" Product Price"
                     onBlur={handleOnBlur}
                     size="small"
                 />
                 <TextField
+                    required
                     sx={{ width: '90%', m: 1 }}
                     id="outlined-size-small"
-                    name="day"
-                    label="Day's of Package"
-                    onBlur={handleOnBlur}
-                    size="small"
-                />
-                <TextField
-                    sx={{ width: '90%', m: 1 }}
-                    id="outlined-size-small"
-                    name="reviews_star"
-                    label="Reviews Star"
+                    name="quantity"
+                    label="Quantity"
                     onBlur={handleOnBlur}
                     size="small"
                 />

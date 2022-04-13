@@ -10,8 +10,10 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import UseFireBase from '../../../Hooks/UseFireBase';
 import Upperbar from '../../HomePages/Upperbar/Upperbar';
+import { Avatar } from '@mui/material';
 const pages = ['Home', 'Explore', 'About',];
 
 
@@ -62,6 +64,38 @@ const NavigationBar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+
+
+
+    function stringToColor(string) {
+        let hash = 0;
+        let i;
+
+        /* eslint-disable no-bitwise */
+        for (i = 0; i < string.length; i += 1) {
+            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        }
+
+        let color = '#';
+
+        for (i = 0; i < 3; i += 1) {
+            const value = (hash >> (i * 8)) & 0xff;
+            color += `00${value.toString(16)}`.slice(-2);
+        }
+        /* eslint-enable no-bitwise */
+
+        return color;
+    }
+    function stringAvatar(name) {
+        return {
+            sx: {
+                bgcolor: stringToColor(name),
+            },
+            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+        };
+    }
+
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -140,7 +174,13 @@ const NavigationBar = () => {
                                         aria-expanded={open ? 'true' : undefined}
                                         onClick={handleClick}
                                     >
-                                        <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />
+                                        {
+                                            user.photoURL ? (<img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />)
+                                                :
+                                                (<Avatar {...stringAvatar(user?.displayName)} />)
+                                        }
+                                        {/* <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" /> */}
+
                                     </Button>
                                     <Menu
                                         id="basic-menu"

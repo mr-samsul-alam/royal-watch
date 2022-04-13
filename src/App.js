@@ -16,6 +16,7 @@ import AddProducts from './Pages/DashBoardPage/AddProducts/AddProducts';
 import ManageOrder from './Pages/DashBoardPage/ManageOrder/ManageOrder';
 import MakeAdmin from './Pages/DashBoardPage/MakeAdmin/MakeAdmin';
 import UpdateProduct from './Pages/DashBoardPage/UpdateProduct/UpdateProduct';
+import SingleProductDetails from './Pages/ExplorePage/SingleProductDetails/SingleProductDetails';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="home" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="explore" element={<ExplorePage />} />
+          <Route path="product/:id" element={<SingleProductDetails />} />
           {/* <Route path="singlePackageDetails/:id" element={<PrivateRoute > <SinglePackageDetails /></PrivateRoute >} /> */}
 
 

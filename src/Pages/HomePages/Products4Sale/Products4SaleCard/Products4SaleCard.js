@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Box } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const cardOnHover = ({ hover }) => ({
     borderBottom: '3px solid',
@@ -20,10 +21,11 @@ const cardOnHover = ({ hover }) => ({
 })
 
 const Products4SaleCard = (props) => {
-    const { _id, isAvailable, price, picture, name, rating, company, about, quantity, type, Sub_Type } = props.review
+    const navigate = useNavigate();
+    const { _id, isAvailable, price, src, name, rating, company, about, quantity, type, Sub_Type } = props.review
     const [hover, setHover] = useState(false)
     const goToDetails = (id) => {
-        console.log("card click", id);
+        navigate(`/product/${_id}`)
     }
     return (
         <Grid item xs={12} md={4} style={{ paddingTop: "30px", }}   >
@@ -38,7 +40,7 @@ const Products4SaleCard = (props) => {
                     <CardMedia
                         component="img"
                         height="100%"
-                        image={picture}
+                        image={src[0]}
                         alt="green iguana"
                     />
                     <CardContent>

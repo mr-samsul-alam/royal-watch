@@ -1,7 +1,7 @@
 import { Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
-import ExploreCard from '../ExploreCard/ExploreCard';
+import Products4SaleCard from '../../HomePages/Products4Sale/Products4SaleCard/Products4SaleCard';
+import NavigationBar from '../../Shared/NavigationBar/NavigationBar'; 
 
 const ExplorePage = () => {
     const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ const ExplorePage = () => {
             <Container>
                 <Grid container spacing={2}>
                     {
-                        products.map(review => <ExploreCard key={review._id} review={review} ></ExploreCard>)
+                        products.map(review => <Products4SaleCard key={review._id} review={review} ></Products4SaleCard>)
                     }
                 </Grid>
             </Container>

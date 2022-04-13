@@ -1,15 +1,19 @@
-import React from 'react';
-import './ProductsDetails.css'
-import Colors from './Color'
-import DetailsThumb from './DetailsThumb';
+import React, { useEffect, useState } from 'react';
+import './ProductsDetails.css' 
+import DetailsThumb from './DetailsThumb'; 
+
+ 
+
 
 class ProductsDetails extends React.Component {
 
+
+    
     state = {
         products: [
             {
                 "_id": "1",
-                "title": "Nike Shoes",
+                "name": "Nike Shoes",
                 "src": [
                     "https://cdn.shopify.com/s/files/1/1692/8885/products/product-19_2000x.jpg?v=1485346640",
                     "https://cdn.shopify.com/s/files/1/1692/8885/products/product-7_2000x.jpg?v=1484829789",
@@ -17,10 +21,9 @@ class ProductsDetails extends React.Component {
                     "https://cdn.shopify.com/s/files/1/1692/8885/products/product-11_2000x.jpg?v=1540786610"
                 ],
                 "description": "UI/UX designing, html css tutorials",
-                "content": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
-                "price": 23,
-                "colors": ["red", "black", "crimson", "teal"],
-                "count": 1
+                "about": "Welcome to our channel Dev AT. Here you can learn web designing, UI/UX designing, html css tutorials, css animations and css effects, javascript and jquery tutorials and related so on.",
+                "price": 23, 
+                "quantity": 1
             }
         ],
         index: 0
@@ -50,19 +53,16 @@ class ProductsDetails extends React.Component {
                 {
                     products.map(item => (
                         <div className="details" key={item._id}>
-                            <div className="big-img">
+                            <div className="big-img"> 
                                 <img src={item.src[index]} alt="" />
                             </div>
 
                             <div className="box">
                                 <div className="row">
-                                    <h2>{item.title}</h2>
+                                    <h2>{item.name}</h2>
                                     <span>${item.price}</span>
-                                </div>
-                                <Colors colors={item.colors} />
-
-                                <p>{item.description}</p>
-                                <p>{item.content}</p>
+                                </div>  
+                                <p>{item.about}</p> 
 
                                 <DetailsThumb images={item.src} tab={this.handleTab} myRef={this.myRef} />
                                 <button className="cart">Add to cart</button>
