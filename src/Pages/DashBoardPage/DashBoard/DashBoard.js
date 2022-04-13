@@ -29,8 +29,7 @@ import UseFireBase from '../../../Hooks/UseFireBase';
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const { user } = UseFireBase()
-    const admin = true;
+    const { user,admin } = UseFireBase() 
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let navigate = useNavigate()
@@ -100,7 +99,7 @@ function Dashboard(props) {
                                 {index === 1 && <DashboardIcon />}
                                 {index === 2 && <AddShoppingCartIcon />}
                                 {index === 3 && <ReviewsIcon />}
-                                {index === 4 && <hr style={{ width:"500px", color: '#D8C3A5' }} />}
+                                {index === 4 && <hr style={{ width:"200px", color: '#D8C3A5' }} />}
                                 {index === 5 && <AddCircleIcon />}
                                 {index === 6 && <UpdateOutlinedIcon />}
                                 {index === 7 && <ManageHistoryIcon />}

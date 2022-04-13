@@ -11,7 +11,7 @@ const UseFireBase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
-    // const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useState(false);
     let navigate = useNavigate();
 
     const auth = getAuth();
@@ -27,7 +27,7 @@ const UseFireBase = () => {
                 setAuthError('');
                 const user = result.user
                 setUser(user);
-                // saveUser(user.email, user.displayName, 'PUT')
+                saveUser(user.email, user.displayName, 'PUT')
             }).catch((error) => {
                 setAuthError(error.message);
             })
@@ -42,8 +42,8 @@ const UseFireBase = () => {
             .then((result) => {
                 const newUser = { email, displayName: name }
                 setUser(newUser);
-                //save user to the database
-                // saveUser(email, name, 'POST');
+                //save user to the database 
+                saveUser(email, name, 'POST');
                 //send name to firebase after creation
                 updateProfile(auth.currentUser, {
                     displayName: name
@@ -73,11 +73,17 @@ const UseFireBase = () => {
             })
             .finally(() => setIsLoading(false));
     }
-    // useEffect(() => {
-    //     fetch(`https://mighty-woodland-10467.herokuapp.com/users/${user.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setAdmin(data.admin))
-    // }, [user.email])
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user.email}`)
+            .then(res => res.json())
+            .then(data => setAdmin(data.admin))
+    }, [user.email])
+    
+    console.log(admin);
+
+
 
     // this is using for Log Out
     const logout = () => {
@@ -90,20 +96,21 @@ const UseFireBase = () => {
                 setAuthError(error);
             }).finally(() => setIsLoading(false));
     }
-    // const saveUser = (email, displayName, method) => {
-    //     const user = { email, displayName };
-    //     fetch('https://mighty-woodland-10467.herokuapp.com/users', {
-    //         method: method,
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then()
-    // }
 
 
-    
+    const saveUser = (email, displayName, method) => {
+        const user = { email, displayName };
+        fetch('http://localhost:5000/users', {
+            method: method,
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then()
+    }
+
+
     // observer user state
     useEffect(() => {
         const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -121,7 +128,7 @@ const UseFireBase = () => {
         user,
         signUsingGoogle,
         registerUser,
-        // admin,
+        admin,
         logout,
         loginUser,
         isLoading,

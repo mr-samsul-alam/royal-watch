@@ -11,12 +11,12 @@ import { Box } from '@mui/system';
 const ReviewCard = (props) => {
     const { _id, picture, name, rating, decription } = props.review
     return (
-        <Grid item xs={12} md={4} style={{ paddingTop: "30px" }}   >
+        <Grid item xs={12} md={6} lg={4} style={{ paddingTop: "30px" }}   >
             <Paper elevation={24} variant='elevation' sx={{ maxWidth: 345, maxHeight: 450, padding: '20px', textAlign: 'center', alignItems: 'center', borderRadius: '25px' }}>
 
                 <CardContent>
                     <Grid container spacing={2}>
-                        <Grid item xs={11} md={11} variant="body2"   color="text.secondary">
+                        <Grid item xs={11} md={11} variant="body2" color="text.secondary">
                             <div style={{ width: "100%", height: 150, overflowY: "auto" }}>
                                 {decription}
                             </div>
