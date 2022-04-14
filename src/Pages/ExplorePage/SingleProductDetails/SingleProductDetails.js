@@ -69,17 +69,26 @@ const SingleProductDetails = () => {
                         <Typography  >
                             <Rating name="half-rating-read" style={{ color: '#D8C3A5' }} defaultValue={4} precision={0.5} readOnly />
                         </Typography>
+
+
                         <Typography>
-                            {product?.price}
+                            {parseFloat(product?.price) }
                         </Typography>
+
+
+
                         <Typography  >
                             {product?.description}
                         </Typography>
+
+
                         <ButtonGroup variant="outlined" aria-label="outlined button group">
                             <Button onClick={() => upDate("mynas", quantity)}>-</Button>
                             <Button>{quantity}</Button>
                             <Button onClick={() => upDate("plus", quantity)}>+</Button>
                         </ButtonGroup>
+
+
 
                         <AddToCart CartDetails={CartDetails} ></AddToCart>
 
