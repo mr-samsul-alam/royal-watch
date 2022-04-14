@@ -7,11 +7,12 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import UseFireBase from '../../../Hooks/UseFireBase';
+import AddToCart from '../AddToCart/AddToCart';
 
 const SingleProductDetails = () => {
     const [product, setProduct] = useState({});
-    const [addToProduct, setAddToProduct] = useState(false);
-    const [quantity, setQuantity] = useState(1); 
+
+    const [quantity, setQuantity] = useState(1);
     const { user } = UseFireBase()
     const { id } = useParams()
     const navigate = useNavigate();
@@ -31,8 +32,8 @@ const SingleProductDetails = () => {
         productName: `${product.name}`,
         productImg: `${product.main_picture}`,
         quantity: `${quantity}`,
-        // price: `${price}`,
-        status: 'addedToCart'
+        perUnit: `${product?.price}`,
+        status: 'pending'
     }
 
 
@@ -53,26 +54,7 @@ const SingleProductDetails = () => {
             }
         }
     }
-    const handleAddToCard = () => {
-        fetch('http://localhost:5000/carts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(CartDetails)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    setAddToProduct(true);
-                }
-            });
 
-    }
-
-    const goToCart = () => {
-        navigate("/dashboard/myCart")
-    }
     // console.log(product?.price);
     return (
         <div>
@@ -85,10 +67,10 @@ const SingleProductDetails = () => {
                     <Grid item xs={12} md={6}>
                         <Typography style={{ fontWeight: 'bolder', fontSize: '2rem' }}>{product?.name}</Typography>
                         <Typography  >
-                            <Rating name="half-rating-read" style={{ color: '#D8C3A5' }} defaultValue={parseFloat(product?.rating)} precision={0.5} readOnly />
+                            <Rating name="half-rating-read" style={{ color: '#D8C3A5' }} defaultValue={4} precision={0.5} readOnly />
                         </Typography>
                         <Typography>
-                            {/* {price} */}
+                            {product?.price}
                         </Typography>
                         <Typography  >
                             {product?.description}
@@ -99,21 +81,7 @@ const SingleProductDetails = () => {
                             <Button onClick={() => upDate("plus", quantity)}>+</Button>
                         </ButtonGroup>
 
-
-
-
-
-                        {addToProduct && <Alert severity="success"> {quantity} {product?.name} Added to Cart successfully!</Alert>}
-                        {addToProduct && <Button onClick={goToCart} variant="outlined" size="large" style={{ color: '#D8C3A5', border: '2px solid #D8C3A5', margin: "10px", padding: '15px' }}> <ShoppingCartCheckoutIcon style={{ paddingRight: '5px' }} />  My Cart</Button>}
-                        <div>
-                            <Button variant="outlined" size="large" style={{ color: '#D8C3A5', border: '2px solid #D8C3A5', margin: "10px", padding: '15px' }} onClick={handleAddToCard}> <AddShoppingCartIcon style={{ paddingRight: '5px' }} />  ADD TO CART</Button>
-
-
-                            <Button variant="outlined" size="large" style={{ color: '#D8C3A5', border: '2px solid #D8C3A5', margin: "20px", padding: '15px' }} > <FavoriteBorderOutlinedIcon style={{ paddingRight: '5px' }} />ADD TO WISH</Button>
-
-
-                            <Button variant="outlined" size="large" style={{ color: '#D8C3A5', border: '2px solid #D8C3A5', margin: "20px", padding: '15px' }} > <ShoppingCartOutlinedIcon style={{ paddingRight: '5px' }} />  BUY NOW</Button>
-                        </div>
+                        <AddToCart CartDetails={CartDetails} ></AddToCart>
 
 
                     </Grid>

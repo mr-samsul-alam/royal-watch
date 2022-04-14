@@ -17,8 +17,7 @@ const AddProducts = () => {
 
     const handleBookingSubmit = e => {
         // send to the server
-
-        console.log(bookingInfo)
+ 
         fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {

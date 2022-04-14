@@ -27,8 +27,7 @@ const GiveReview = () => {
                 if (data.insertedId) {
                     setSuccess(true);
                 }
-            });
-        console.log(reviews);
+            }); 
         e.preventDefault()
     }
     return (

@@ -17,6 +17,8 @@ import ManageOrder from './Pages/DashBoardPage/ManageOrder/ManageOrder';
 import MakeAdmin from './Pages/DashBoardPage/MakeAdmin/MakeAdmin';
 import UpdateProduct from './Pages/DashBoardPage/UpdateProduct/UpdateProduct';
 import SingleProductDetails from './Pages/ExplorePage/SingleProductDetails/SingleProductDetails';
+import PaymentPage from './Pages/DashBoardPage/PaymentPage/PaymentPage';
+import OrdersPage from './Pages/DashBoardPage/OrdersPage/OrdersPage';
 
 function App() {
   return (
@@ -26,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="home" element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
+          <Route path="about" element={<PrivateRoute><AboutPage /></PrivateRoute>} />
           <Route path="explore" element={<ExplorePage />} />
           <Route path="product/:id" element={<SingleProductDetails />} />
           {/* <Route path="singlePackageDetails/:id" element={<PrivateRoute > <SinglePackageDetails /></PrivateRoute >} /> */}
@@ -39,6 +41,8 @@ function App() {
             <Route exact path="/dashboard" element={<PrivateRoute><DashBoardHome /></PrivateRoute>}></Route>
             <Route path={"/dashboard/giveReview"} element={<PrivateRoute><GiveReview /></PrivateRoute>}></Route>
             <Route path={"/dashboard/myCart"} element={<PrivateRoute><MyCart /></PrivateRoute>}></Route>
+            <Route path={"/dashboard/payments"} element={<PrivateRoute><PaymentPage /></PrivateRoute>}></Route>
+            <Route path={"/dashboard/orders"} element={<PrivateRoute><OrdersPage /></PrivateRoute>}></Route>
             <Route path={"/dashboard/addProducts"} element={<PrivateRoute><AddProducts /></PrivateRoute>}></Route>
             <Route path={"/dashboard/manageOrder"} element={<PrivateRoute><ManageOrder /></PrivateRoute>}> </Route>
             <Route path={"/dashboard/makeAdmin"} element={<PrivateRoute><MakeAdmin /></PrivateRoute>}></Route>

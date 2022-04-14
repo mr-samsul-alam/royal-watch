@@ -12,8 +12,7 @@ const Products4Sale = () => {
         }
         hello()
     }, [])
-
-    console.log(products);
+ 
 
     return (
         <Container>

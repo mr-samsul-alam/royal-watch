@@ -17,6 +17,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import AddTaskIcon from '@mui/icons-material/AddTask';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ReviewsIcon from '@mui/icons-material/Reviews';
@@ -29,7 +30,7 @@ import UseFireBase from '../../../Hooks/UseFireBase';
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const { user,admin } = UseFireBase() 
+    const { user, admin } = UseFireBase()
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let navigate = useNavigate()
@@ -45,6 +46,8 @@ function Dashboard(props) {
                 case "Give Review": navigate('/dashboard/giveReview')
                     break;
                 case "My Cart": navigate('/dashboard/myCart')
+                    break;
+                case "My Orders": navigate('/dashboard/orders')
                     break;
                 case "Dashboard": navigate('/dashboard')
                     break;
@@ -64,6 +67,8 @@ function Dashboard(props) {
                 case "Home": navigate('/home')
                     break;
                 case "Give Review": navigate('/dashboard/giveReview')
+                    break;
+                case "My Orders": navigate('/dashboard/orders')
                     break;
                 case "My Cart": navigate('/dashboard/myCart')
                     break;
@@ -92,19 +97,20 @@ function Dashboard(props) {
             <Divider />
             <List>
                 {
-                    admin ? ['Home', 'DashBoard', 'My Cart', 'Give Review', " ", "Add Products", "Update Product", "Manage Order", "Make Admin",].map((text, index) => (
+                    admin ? ['Home', 'DashBoard', 'My Cart', "My Orders", 'Give Review', " ", "Add Products", "Update Product", "Manage Order", "Make Admin",].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon>
                                 {index === 0 && <ArrowBackIcon />}
                                 {index === 1 && <DashboardIcon />}
                                 {index === 2 && <AddShoppingCartIcon />}
-                                {index === 3 && <ReviewsIcon />}
-                                {index === 4 && <hr style={{ width:"200px", color: '#D8C3A5' }} />}
-                                {index === 5 && <AddCircleIcon />}
-                                {index === 6 && <UpdateOutlinedIcon />}
-                                {index === 7 && <ManageHistoryIcon />}
-                                {index === 8 && <AdminPanelSettingsIcon />}
-                                {index === 9 && <UpdateOutlinedIcon />}
+                                {index === 3 && <AddTaskIcon />}
+                                {index === 4 && <ReviewsIcon />}
+                                {index === 5 && <hr style={{ width: "200px", color: '#D8C3A5' }} />}
+                                {index === 6 && <AddCircleIcon />}
+                                {index === 7 && <UpdateOutlinedIcon />}
+                                {index === 8 && <ManageHistoryIcon />}
+                                {index === 9 && <AdminPanelSettingsIcon />}
+                                {index === 10 && <UpdateOutlinedIcon />}
                             </ListItemIcon>
                             <ListItemText primary={text} onClick={() => handleRoute(text)} />
                         </ListItem>

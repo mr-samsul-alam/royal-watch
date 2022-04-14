@@ -6,46 +6,66 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Button, Container, Typography } from '@mui/material';
-import TextField from '@mui/material/TextField';
+import { Container, Typography } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import InputBase from '@mui/material/InputBase';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const ManageOrder = () => {
     const [data, setData] = useState([])
+    const [searchData, setSearchData] = useState(" ")
     const [status, setStatus] = React.useState();
 
+console.log(searchData);
+    useEffect(() => {
+        const hello = async () => {
+            await fetch(`http://localhost:5000/orders?search=${searchData}`)
+                .then(res => res.json())
+                .then(data => setData(data))
+        }
+        hello()
+    }, [searchData]) 
+  
+    const [age, setAge] = React.useState('');
 
-    // useEffect(() => {
-    //     const hello = async () => {
-    //         await fetch(`https://mighty-woodland-10467.herokuapp.com/bookingInfo/`)
-    //             .then(res => res.json())
-    //             .then(data => setData(data))
-    //     }
-    //     hello()
-    // }, [])
-    const handleStatusUpdate = id => {
-        // const state = 'approved'
-        // console.log(id);
-        // const url = `https://mighty-woodland-10467.herokuapp.com/bookingInfo/624f3e66280f4ca76bb69cbc`;
-        // fetch(url, {
-        //     method: 'PUT',
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(state)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.modifiedCount > 0) {
-        //             alert('Update Successful');
-        //         }
-        //     })
-    }
+    const handleBoxChange = (event) => {
+        setAge(event.target.value);
+        console.log(event.target.value);
+    };
+
     return (
         <Container>
+            
             <Typography variant='h3' style={{ textAlign: 'center', justifyContent: "center", padding: '10px' }}>
                 Manage Order
             </Typography>
+            <Box sx={{ flexGrow: 1 }}> 
+                <div style={{ width: '200px' }}><Box sx={{ py: '20px', textAlign: 'center' }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={age}
+                            label="Age"
+                            onChange={handleBoxChange}
+                        >
+                            <MenuItem value={10}>Ten</MenuItem>
+                            <MenuItem value={20}>Twenty</MenuItem>
+                            <MenuItem value={30}>Thirty</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box></div>
+            </Box>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>

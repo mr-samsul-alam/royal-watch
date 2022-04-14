@@ -10,8 +10,7 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
 
-    }, [])
-    console.log(reviews);
+    }, []) 
 
     return (
         <Container style={{ padding: '50px' }} >

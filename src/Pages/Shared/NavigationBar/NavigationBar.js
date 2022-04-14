@@ -9,8 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import { useNavigate } from 'react-router'; 
 import UseFireBase from '../../../Hooks/UseFireBase';
 import Upperbar from '../../HomePages/Upperbar/Upperbar';
 import { Avatar } from '@mui/material';
@@ -174,12 +173,12 @@ const NavigationBar = () => {
                                         aria-expanded={open ? 'true' : undefined}
                                         onClick={handleClick}
                                     >
-                                        {
+                                        {/* {
                                             user.photoURL ? (<img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />)
                                                 :
                                                 (<Avatar {...stringAvatar(user?.displayName)} />)
-                                        }
-                                        {/* <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" /> */}
+                                        } */}
+                                        <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />
 
                                     </Button>
                                     <Menu

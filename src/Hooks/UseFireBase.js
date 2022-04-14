@@ -22,7 +22,11 @@ const UseFireBase = () => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                const destination = location?.state?.from || '/';
+                if (location?.state === null) {
+                    console.log('still working');
+                    navigate(location?.pathname)
+                }
+                const destination = location?.state?.from || '';
                 navigate(destination)
                 setAuthError('');
                 const user = result.user
@@ -36,7 +40,7 @@ const UseFireBase = () => {
 
     // Email Pass log In and Reg
 
-    const registerUser = (email, password, name) => {
+    const registerUser = (email, password, name, location) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
@@ -48,10 +52,16 @@ const UseFireBase = () => {
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
+                    if (location?.state === null) {
+                        navigate(location?.pathname)
+                    }
+                    const destination = location?.state?.from || '';
+                    console.log(location);
+                    navigate(destination)
+
                 }).catch((error) => {
                 });
                 setAuthError('');
-                navigate('/')
             })
             .catch((error) => {
                 setAuthError(error.message);
@@ -63,12 +73,17 @@ const UseFireBase = () => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const destination = location?.state?.from || '/'; 
-                navigate(destination);
+                if (location?.state === null) {
+                    navigate(location?.pathname)
+                }
+
+                const destination = location?.state?.from || '';
+                console.log(destination);
+                navigate(destination)
                 setAuthError('');
             })
             .catch((error) => {
-                setAuthError(error.message);
+                // setAuthError(error.message);
             })
             .finally(() => setIsLoading(false));
     }
@@ -79,7 +94,7 @@ const UseFireBase = () => {
             .then(res => res.json())
             .then(data => setAdmin(data.admin))
     }, [user.email])
-     
+
 
 
 

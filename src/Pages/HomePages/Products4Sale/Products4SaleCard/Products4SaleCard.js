@@ -25,8 +25,7 @@ const Products4SaleCard = (props) => {
     // const { _id, rating } = props.product
     const { _id, price, name, main_picture, rating, company, quantity } = props.product || []
     const [hover, setHover] = useState(false)
-
-    console.log(props.product);
+ 
     const goToDetails = (id) => {
         navigate(`/product/${_id}`)
     }
