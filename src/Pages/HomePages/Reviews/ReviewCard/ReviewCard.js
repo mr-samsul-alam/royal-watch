@@ -9,7 +9,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { Box } from '@mui/system';
 
 const ReviewCard = (props) => {
-    const { _id, picture, name, rating, decription } = props.review
+    const { photo, name, rating, review } = props.review
     return (
         <Grid item xs={12} md={6} lg={4} style={{ paddingTop: "30px" }}   >
             <Paper elevation={24} variant='elevation' sx={{ maxWidth: 345, maxHeight: 450, padding: '20px', textAlign: 'center', alignItems: 'center', borderRadius: '25px' }}>
@@ -18,7 +18,7 @@ const ReviewCard = (props) => {
                     <Grid container spacing={2}>
                         <Grid item xs={11} md={11} variant="body2" color="text.secondary">
                             <div style={{ width: "100%", height: 150, overflowY: "auto" }}>
-                                {decription}
+                                {review}
                             </div>
                         </Grid>
                         <Grid item xs={1} md={1} color="text.secondary" >
@@ -33,7 +33,7 @@ const ReviewCard = (props) => {
                         <CardMedia
                             style={{ borderRadius: "50%", width: "150px" }}
                             component="img"
-                            image={picture}
+                            image={photo}
                             alt="green iguana"
                         />
                     </Box>

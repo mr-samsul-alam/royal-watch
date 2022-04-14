@@ -110,11 +110,11 @@ export default function MyCart() {
             </Typography>
             {
                 carts.length === 0 ? (<Typography variant='h4' style={{ textAlign: 'center' }}>
-                    U Donot have any cart
+                    U don't have any cart
                 </Typography>) : (<div> <Typography variant='h4' style={{ textAlign: 'center' }}>
                     <Badge badgeContent={carts?.length} color="secondary" style={{ margin: '20px' }}>
                         <ShoppingCartOutlinedIcon color="action" />
-                    </Badge>U  have cart
+                    </Badge>
                 </Typography><TableContainer component={Paper}>
                         <Table sx={{ minWidth: 700 }} aria-label="spanning table">
                             <TableHead>

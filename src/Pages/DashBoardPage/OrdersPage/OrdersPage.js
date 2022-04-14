@@ -29,8 +29,8 @@ export default function OrderPage() {
         <>
 
             <Container>
-                <h1 style={{ textAlign: 'center' }} >u r Order Update Page</h1>
-                {activeState === 0 ? (<h1>You donot have any order</h1>) : (orders.map(order => <Box style={{ border: "2px solid blue", margin: '20px', padding: '20px' }} sx={{ width: '100%' }}>
+                <h1 style={{ textAlign: 'center' }} >Order's Update Page</h1>
+                {activeState === 0 ? (<h1>You don't have any order</h1>) : (orders.map(order => <Box style={{ border: "2px solid blue", margin: '20px', padding: '20px' }} sx={{ width: '100%' }}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <div>
                             <p>Product Name:{order?.productName}</p>

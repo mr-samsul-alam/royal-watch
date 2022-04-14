@@ -173,12 +173,12 @@ const NavigationBar = () => {
                                         aria-expanded={open ? 'true' : undefined}
                                         onClick={handleClick}
                                     >
-                                        {/* {
+                                        {
                                             user.photoURL ? (<img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />)
                                                 :
                                                 (<Avatar {...stringAvatar(user?.displayName)} />)
-                                        } */}
-                                        <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" />
+                                        }
+                                        {/* <img src={user.photoURL} style={{ borderRadius: "50%", width: "65%" }} alt="" /> */}
 
                                     </Button>
                                     <Menu

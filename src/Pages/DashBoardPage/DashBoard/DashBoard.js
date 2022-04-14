@@ -30,7 +30,7 @@ import UseFireBase from '../../../Hooks/UseFireBase';
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const { user, admin} = UseFireBase() 
+    const { user, admin } = UseFireBase()
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let navigate = useNavigate()
@@ -92,7 +92,10 @@ function Dashboard(props) {
                     sx={{ mx: "auto", padding: "10px", fontSize: "1.5rem", display: { md: 'flex' } }}
 
                 >
-                    <img width={100} style={{ borderRadius: "50%", width: "75%" }} src={user.photoURL} alt="Logo" />
+                    {
+                        user?.photoURL ? <img width={100} style={{ borderRadius: "50%", width: "75%" }} src={user.photoURL} alt="Logo" />
+                            : <img width={100} style={{ borderRadius: "50%", width: "40%" }} src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Logo" />
+                    }
                 </Typography></Toolbar>
             <Divider />
             <List>
@@ -122,8 +125,8 @@ function Dashboard(props) {
                                     {index === 0 && <ArrowBackIcon />}
                                     {index === 1 && <DashboardIcon />}
                                     {index === 2 && <AddShoppingCartIcon />}
-                                    {index === 3 && <AddTaskIcon />}
-                                    {index === 4 && <ReviewsIcon />}
+                                    {index === 3 && <InboxIcon />}
+                                    {index === 4 && <AddCircleIcon />}
                                 </ListItemIcon>
                                 <ListItemText primary={text} onClick={() => handleRoute(text)} />
 

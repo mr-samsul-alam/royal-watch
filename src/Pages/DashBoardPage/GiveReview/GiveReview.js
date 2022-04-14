@@ -27,13 +27,16 @@ const GiveReview = () => {
                 if (data.insertedId) {
                     setSuccess(true);
                 }
-            }); 
+            });
         e.preventDefault()
     }
     return (
         <Container style={{ textAlign: "center" }}>
-
-            <img style={{ borderRadius: "50%", width: "10%" }} src={user.photoURL} alt="Logo" />
+            {
+                user?.photoURL ? <img width={100} style={{ borderRadius: "50%", width: "40%" }} src={user.photoURL} alt="Logo" />
+                    : <img width={100} style={{ borderRadius: "50%", width: "10%" }} src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Logo" />
+            }
+            {/* <img style={{ borderRadius: "50%", width: "10%" }} src={user.photoURL} alt="Logo" /> */}
             <form onSubmit={handleSubmit}>
 
                 <TextField
