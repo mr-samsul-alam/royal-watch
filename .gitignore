@@ -3,9 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
-/src/FireBase/FireBaseConfig.js
-src/FireBase/FireBaseConfig.js
+.pnp.js 
 # testing
 /coverage
 
