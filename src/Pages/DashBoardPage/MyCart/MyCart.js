@@ -7,9 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Button, Container, Typography } from '@mui/material';
+import { Badge, Button, Container, Typography } from '@mui/material';
 import UseFireBase from '../../../Hooks/UseFireBase';
 import { useNavigate } from 'react-router-dom';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const TAX_RATE = 0.07;
 
@@ -43,7 +44,7 @@ const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
 export default function MyCart() {
     const { user } = UseFireBase()
-    const navigate = useNavigate();
+    const [addToProduct, setAddToProduct] = React.useState(false)
     const [carts, setCarts] = React.useState([])
     console.log(user?.email);
     React.useEffect(() => {
@@ -51,14 +52,37 @@ export default function MyCart() {
             .then(res => res.json())
             .then(data => setCarts(data))
     }, [user.email])
-    console.log(carts);
+    const paymentDone = () => {
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(carts)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setAddToProduct(true);
+            });
+        const url = `http://localhost:5000/allCarts/${user?.email}`
+        console.log(url);
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.deletedCount)
+                if (data.deletedCount > 0) {
+                    alert('Payment successfully');
+                    setCarts([]);
+                }
+            });
 
-    const goToPaymentPage = () => {
-        navigate("/dashboard/payments")
+
     }
     const cancelOrder = (id) => {
         alert('R u Sure U wanna Delete')
-        const url = `http://localhost:5000/orders/${id}`
+        const url = `http://localhost:5000/carts/${id}`
         console.log(url);
         fetch(url, {
             method: 'DELETE'
@@ -74,61 +98,79 @@ export default function MyCart() {
             });
 
     }
+    const navigate = useNavigate()
+    const goToMyOder = () => {
+        navigate("dashboard/orders")
+    }
+    console.log();
     return (
         <Container>
             <Typography variant='h4' style={{ textAlign: 'center' }}>
                 My Cart
             </Typography>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center" >Product</TableCell>
-                            <TableCell align="center">Qty.</TableCell>
-                            <TableCell align="center"> Per Unit</TableCell>
-                            <TableCell align="center">Status</TableCell>
-                            <TableCell align="center">Sum</TableCell>
-                            <TableCell align="center">Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {carts.map((row) => (
-                            // console.log(row?._id, row?.name, row?.email)
-                            <TableRow key={row?._id}>
-                                <TableCell style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}> <img src={row?.productImg} style={{ width: '100px' }} alt="" />{row?.productName}</TableCell>
-                                <TableCell align="center">{row?.quantity}</TableCell>
-                                <TableCell align="center">{row?.perUnit}</TableCell>
-                                <TableCell align="center">100000</TableCell>
-                                <TableCell align="center">{row?.status}</TableCell>
-                                <TableCell align="center" ><Button variant='contained' onClick={() => cancelOrder(row?._id)} style={{ alignItems: 'center' }} >  <DeleteOutlineIcon /></Button>  </TableCell>
-                                {/* <TableCell align="right">{ccyFormat(row?.price)}</TableCell> */}
-                            </TableRow>
-                        ))}
+            {
+                carts.length === 0 ? (<Typography variant='h4' style={{ textAlign: 'center' }}>
+                    U Donot have any cart
+                </Typography>) : (<div> <Typography variant='h4' style={{ textAlign: 'center' }}>
+                    <Badge badgeContent={carts?.length} color="secondary" style={{ margin: '20px' }}>
+                        <ShoppingCartOutlinedIcon color="action" />
+                    </Badge>U  have cart
+                </Typography><TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 700 }} aria-label="spanning table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center" >Product</TableCell>
+                                    <TableCell align="center">Qty.</TableCell>
+                                    <TableCell align="center"> Per Unit</TableCell>
+                                    <TableCell align="center">Status</TableCell>
+                                    <TableCell align="center">Sum</TableCell>
+                                    <TableCell align="center">Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {carts.map((row) => (
+                                    // console.log(row?._id, row?.name, row?.email)
+                                    <TableRow key={row?._id}>
+                                        <TableCell style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}> <img src={row?.productImg} style={{ width: '100px' }} alt="" />{row?.productName}</TableCell>
+                                        <TableCell align="center">{row?.quantity}</TableCell>
+                                        <TableCell align="center">{row?.perUnit}</TableCell>
+                                        <TableCell align="center">100000</TableCell>
+                                        <TableCell align="center">{row?.status}</TableCell>
+                                        <TableCell align="center" ><Button variant='contained' onClick={() => cancelOrder(row?._id)} style={{ alignItems: 'center' }} >  <DeleteOutlineIcon /></Button>  </TableCell>
+                                        {/* <TableCell align="right">{ccyFormat(row?.price)}</TableCell> */}
+                                    </TableRow>
+                                ))}
 
-                        <TableRow>
-                            <TableCell rowSpan={4} />
-                            <TableCell colSpan={2}>Subtotal</TableCell>
-                            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Tax</TableCell>
-                            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-                            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell colSpan={2}>Total</TableCell>
-                            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell colSpan={5}><Button onClick={goToPaymentPage} variant="contained" >Complete Payment</Button></TableCell>
-                        </TableRow>
-                        <Typography>
+                                <TableRow>
+                                    <TableCell rowSpan={4} />
+                                    <TableCell colSpan={2}>Subtotal</TableCell>
+                                    <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>Tax</TableCell>
+                                    <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
+                                    <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={2}>Total</TableCell>
+                                    <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell colSpan={5}><Button onClick={paymentDone} variant="contained" >Complete Payment</Button></TableCell>
+                                </TableRow>
+                                <Typography>
+                                    {
+                                        addToProduct ? <Button onClick={goToMyOder} variant="contained" > Go To My Orders</Button> : ''
+                                    }
+                                </Typography>
+                            </TableBody>
+                        </Table>
 
-                        </Typography>
-                    </TableBody>
-                </Table>
+                    </TableContainer></div>
 
-            </TableContainer>
+                )
+            }
+
 
 
         </Container>

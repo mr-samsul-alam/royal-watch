@@ -30,7 +30,7 @@ import UseFireBase from '../../../Hooks/UseFireBase';
 const drawerWidth = 240;
 
 function Dashboard(props) {
-    const { user, admin } = UseFireBase()
+    const { user, admin} = UseFireBase() 
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let navigate = useNavigate()
@@ -116,14 +116,14 @@ function Dashboard(props) {
                         </ListItem>
                     ))
                         :
-                        ['Home', 'DashBoard', 'My Cart', 'Give Review'].map((text, index) => (
+                        ['Home', 'DashBoard', 'My Cart', "My Orders", 'Give Review'].map((text, index) => (
                             <ListItem button key={text}>
                                 <ListItemIcon>
                                     {index === 0 && <ArrowBackIcon />}
                                     {index === 1 && <DashboardIcon />}
                                     {index === 2 && <AddShoppingCartIcon />}
-                                    {index === 3 && <InboxIcon />}
-                                    {index === 4 && <AddCircleIcon />}
+                                    {index === 3 && <AddTaskIcon />}
+                                    {index === 4 && <ReviewsIcon />}
                                 </ListItemIcon>
                                 <ListItemText primary={text} onClick={() => handleRoute(text)} />
 

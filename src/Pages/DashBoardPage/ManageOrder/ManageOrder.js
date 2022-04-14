@@ -21,22 +21,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const ManageOrder = () => {
-    const [data, setData] = useState([])
-    const [searchData, setSearchData] = useState(" ")
-    const [status, setStatus] = React.useState();
-
-console.log(searchData);
-    useEffect(() => {
-        const hello = async () => {
-            await fetch(`http://localhost:5000/orders?search=${searchData}`)
-                .then(res => res.json())
-                .then(data => setData(data))
-        }
-        hello()
-    }, [searchData]) 
-  
     const [age, setAge] = React.useState('');
-
     const handleBoxChange = (event) => {
         setAge(event.target.value);
         console.log(event.target.value);
@@ -44,14 +29,14 @@ console.log(searchData);
 
     return (
         <Container>
-            
+
             <Typography variant='h3' style={{ textAlign: 'center', justifyContent: "center", padding: '10px' }}>
                 Manage Order
             </Typography>
-            <Box sx={{ flexGrow: 1 }}> 
+            <Box sx={{ flexGrow: 1 }}>
                 <div style={{ width: '200px' }}><Box sx={{ py: '20px', textAlign: 'center' }}>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                        <InputLabel id="demo-simple-select-label">SRC</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -59,9 +44,9 @@ console.log(searchData);
                             label="Age"
                             onChange={handleBoxChange}
                         >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={10}>payed</MenuItem>
+                            <MenuItem value={20}>OnShip</MenuItem>
+                            <MenuItem value={30}>Complete</MenuItem>
                         </Select>
                     </FormControl>
                 </Box></div>
