@@ -33,7 +33,7 @@ const AddToCart = (props) => {
         }
         else {
             alert("adding product")
-            fetch('http://localhost:5000/carts', {
+            fetch('https://sheltered-depths-49982.herokuapp.com/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -80,7 +80,7 @@ const AddToCart = (props) => {
         setOpen(false)
         signUsingGoogle(location)
         if (user?.email) {
-            
+
         }
     }
     const handleReg = () => {

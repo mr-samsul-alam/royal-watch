@@ -6,22 +6,22 @@ const Products4Sale = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
         const hello = async () => {
-            await fetch('http://localhost:5000/products')
+            await fetch('https://sheltered-depths-49982.herokuapp.com/products')
                 .then(res => res.json())
                 .then(data => setProducts(data.slice(0, 6)))
         }
         hello()
     }, [])
- 
+
 
     return (
-        <Container style={{marginTop:'70px'}}>
+        <Container style={{ marginTop: '70px' }}>
             <Typography variant="div" style={{ textAlign: 'center', }}>
                 <Typography >
                     360° COLLECTION
                 </Typography>
                 <hr style={{ width: "50px" }} />
-                <Typography variant='h3' style={{ fontWeight: "bolder",marginBottom:'70px' }}>
+                <Typography variant='h3' style={{ fontWeight: "bolder", marginBottom: '70px' }}>
                     <span style={{ color: '#D8C3A5' }}>FEATURED</span> PRODUCTS
                 </Typography>
             </Typography>

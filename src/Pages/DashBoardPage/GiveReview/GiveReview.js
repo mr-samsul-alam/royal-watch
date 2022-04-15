@@ -15,7 +15,7 @@ const GiveReview = () => {
     const reviews = { review: reviewText, photo: photo, name: name, rating: value }
 
     const handleSubmit = e => {
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://sheltered-depths-49982.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

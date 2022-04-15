@@ -11,7 +11,7 @@ const ExplorePage = () => {
     useEffect(() => {
         setBuffer(40)
         setProgress(50)
-        fetch('http://localhost:5000/products')
+        fetch('https://sheltered-depths-49982.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
         setBuffer(100)

@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Badge, Button, Container, Typography } from '@mui/material';
 import UseFireBase from '../../../Hooks/UseFireBase';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import LinearProgress from '@mui/material/LinearProgress';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
@@ -55,7 +55,7 @@ export default function MyCart() {
     React.useEffect(() => {
         setBuffer(40)
         setProgress(50)
-        fetch(`http://localhost:5000/carts/${user?.email}`)
+        fetch(`https://sheltered-depths-49982.herokuapp.com/carts/${user?.email}`)
             .then(res => res.json())
             .then(data => setCarts(data))
         setBuffer(100)
@@ -67,7 +67,7 @@ export default function MyCart() {
 
 
     const paymentDone = () => {
-        fetch('http://localhost:5000/orders', {
+        fetch('https://sheltered-depths-49982.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -78,7 +78,7 @@ export default function MyCart() {
             .then(data => {
                 setAddToProduct(true);
             });
-        const url = `http://localhost:5000/allCarts/${user?.email}`
+        const url = `https://sheltered-depths-49982.herokuapp.com/allCarts/${user?.email}`
         console.log(url);
         fetch(url, {
             method: 'DELETE'
@@ -96,7 +96,7 @@ export default function MyCart() {
     }
     const cancelOrder = (id) => {
         alert('R u Sure U wanna Delete')
-        const url = `http://localhost:5000/carts/${id}`
+        const url = `https://sheltered-depths-49982.herokuapp.com/carts/${id}`
         console.log(url);
         fetch(url, {
             method: 'DELETE'

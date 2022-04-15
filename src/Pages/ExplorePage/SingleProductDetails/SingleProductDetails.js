@@ -22,7 +22,7 @@ const SingleProductDetails = () => {
         const hello = async () => {
             setBuffer(40)
             setProgress(50)
-            await fetch(`http://localhost:5000/products/${id}`)
+            await fetch(`https://sheltered-depths-49982.herokuapp.com/products/${id}`)
                 .then(res => res.json())
                 .then(data => setProduct(data))
             setBuffer(100)

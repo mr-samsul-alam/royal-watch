@@ -20,7 +20,7 @@ export default function OrderPage() {
     const [orders, setOrders] = React.useState([])
 
     React.useEffect(() => {
-        fetch(`http://localhost:5000/orders/${user?.email}`)
+        fetch(`https://sheltered-depths-49982.herokuapp.com/orders/${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     }, [user?.email, orders])

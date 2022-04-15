@@ -30,7 +30,7 @@ const ManageOrder = () => {
     React.useEffect(() => {
         setBuffer(40)
         setProgress(50)
-        fetch(`http://localhost:5000/orders`)
+        fetch(`https://sheltered-depths-49982.herokuapp.com/orders`)
             .then(res => res.json())
             .then(data => setOrders(data))
         setBuffer(100)

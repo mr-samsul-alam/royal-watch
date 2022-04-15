@@ -18,7 +18,7 @@ const AddProducts = () => {
     const handleBookingSubmit = e => {
         // send to the server
 
-        fetch('http://localhost:5000/products', {
+        fetch('https://sheltered-depths-49982.herokuapp.com/products', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
