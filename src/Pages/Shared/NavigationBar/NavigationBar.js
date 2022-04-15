@@ -136,7 +136,7 @@ const NavigationBar = () => {
                             >
                                 {pages.map((page) => (
                                     <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography textAlign="center" style={{ fontWeight: "700", color: '#E85A4F', }} onClick={() => handleNavClicked(page)}>{page}</Typography>
+                                        <Typography textAlign="center" style={{ fontWeight: "700", color: 'black', }} onClick={() => handleNavClicked(page)}>{page}</Typography>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -147,7 +147,7 @@ const NavigationBar = () => {
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: '#E85A4F', display: 'block' }}
+                                    sx={{ my: 2, color: 'black', display: 'block' }}
                                 >
                                     <Typography style={{ fontWeight: "700", }} onClick={() => handleNavClicked(page)}>
                                         {page}
@@ -165,7 +165,7 @@ const NavigationBar = () => {
                                         alignItems: "center"
                                     }}
                                 >
-                                    <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: '100px', color: "#E85A4F", fontWeight: "700" }}  >{user.displayName}</Box>
+                                    <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: '100px', color: "black", fontWeight: "700" }}  >{user.displayName}</Box>
                                     <Button
                                         id="basic-button"
                                         aria-controls={open ? 'basic-menu' : undefined}
@@ -193,7 +193,7 @@ const NavigationBar = () => {
                                         <MenuItem onClick={gotToDashboard}>Dashboard</MenuItem>
                                         <MenuItem onClick={handleLogOut}>Logout</MenuItem>
                                     </Menu>
-                                </div> : <Button onClick={goToLogIn} style={{ color: '#E85A4F' }}  >Login</Button>
+                                </div> : <Button onClick={goToLogIn} style={{ color: 'black' }}  >Login</Button>
                             }
 
                         </Box>

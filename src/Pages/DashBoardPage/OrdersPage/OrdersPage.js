@@ -23,7 +23,7 @@ export default function OrderPage() {
         fetch(`http://localhost:5000/orders/${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, [user?.email])
+    }, [user?.email, orders])
 
     return (
         <>

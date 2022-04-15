@@ -9,7 +9,8 @@ import Paper from '@mui/material/Paper';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Badge, Button, Container, Typography } from '@mui/material';
 import UseFireBase from '../../../Hooks/UseFireBase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import LinearProgress from '@mui/material/LinearProgress';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const TAX_RATE = 0.07;
@@ -45,13 +46,26 @@ const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 export default function MyCart() {
     const { user } = UseFireBase()
     const [addToProduct, setAddToProduct] = React.useState(false)
+    const [progress, setProgress] = React.useState(20);
+    const [buffer, setBuffer] = React.useState(30);
     const [carts, setCarts] = React.useState([])
     console.log(user?.email);
+
+
     React.useEffect(() => {
+        setBuffer(40)
+        setProgress(50)
         fetch(`http://localhost:5000/carts/${user?.email}`)
             .then(res => res.json())
             .then(data => setCarts(data))
-    }, [user.email])
+        setBuffer(100)
+        setProgress(100)
+    }, [user.email, carts])
+
+
+
+
+
     const paymentDone = () => {
         fetch('http://localhost:5000/orders', {
             method: 'POST',
@@ -104,14 +118,12 @@ export default function MyCart() {
     }
     console.log();
     return (
-        <Container>
-            <Typography variant='h4' style={{ textAlign: 'center' }}>
-                My Cart
-            </Typography>
-            {
-                carts.length === 0 ? (<Typography variant='h4' style={{ textAlign: 'center' }}>
-                    U don't have any cart
-                </Typography>) : (<div> <Typography variant='h4' style={{ textAlign: 'center' }}>
+        <div> <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <Container>
+                <Typography variant='h4' style={{ textAlign: 'center' }}>
+                    My Cart
+                </Typography>
+                <div> <Typography variant='h4' style={{ textAlign: 'center' }}>
                     <Badge badgeContent={carts?.length} color="secondary" style={{ margin: '20px' }}>
                         <ShoppingCartOutlinedIcon color="action" />
                     </Badge>
@@ -167,12 +179,6 @@ export default function MyCart() {
                         </Table>
 
                     </TableContainer></div>
-
-                )
-            }
-
-
-
-        </Container>
+            </Container></div>
     );
 }

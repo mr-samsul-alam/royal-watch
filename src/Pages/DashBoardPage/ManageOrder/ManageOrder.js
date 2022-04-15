@@ -6,8 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Container, Typography } from '@mui/material';
+import { Button, Container, Typography } from '@mui/material';
+import LinearProgress from '@mui/material/LinearProgress';
 import { styled, alpha } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -21,83 +24,78 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const ManageOrder = () => {
-    const [age, setAge] = React.useState('');
-    const handleBoxChange = (event) => {
-        setAge(event.target.value);
-        console.log(event.target.value);
-    };
+    const [progress, setProgress] = React.useState(20);
+    const [buffer, setBuffer] = React.useState(30);
+    const [orders, setOrders] = useState([])
+    React.useEffect(() => {
+        setBuffer(40)
+        setProgress(50)
+        fetch(`http://localhost:5000/orders`)
+            .then(res => res.json())
+            .then(data => setOrders(data))
+        setBuffer(100)
+        setProgress(100)
+    }, [])
+    const handleStatusUpdate = () => {
+
+    }
 
     return (
-        <Container>
-
-            <Typography variant='h3' style={{ textAlign: 'center', justifyContent: "center", padding: '10px' }}>
-                Manage Order
-            </Typography>
-            <Box sx={{ flexGrow: 1 }}>
-                <div style={{ width: '200px' }}><Box sx={{ py: '20px', textAlign: 'center' }}>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">SRC</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={age}
-                            label="Age"
-                            onChange={handleBoxChange}
-                        >
-                            <MenuItem value={10}>payed</MenuItem>
-                            <MenuItem value={20}>OnShip</MenuItem>
-                            <MenuItem value={30}>Complete</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box></div>
-            </Box>
-            <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell> </TableCell>
-                            <TableCell align="right">Name </TableCell>
-                            <TableCell align="right">Package Name</TableCell>
-                            <TableCell align="right">Email</TableCell>
-                            <TableCell align="right">Status</TableCell>
-                            <TableCell align="right">Action</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {/* {data.map((row) => (
-                            <TableRow
-                                key={row._id}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.Name}</TableCell>
-                                <TableCell align="right">{row.packageName}</TableCell>
-                                <TableCell align="right">{row.email}</TableCell>
-                                <TableCell align="right">
-                                    {
-                                        row.status === 'pending' && "pending"
-                                    }
-                                    {
-                                        row.status === 'approved' && "approved"
-                                    }
-                                </TableCell>
-                                <TableCell align="right">
-                                    {
-                                        row.status === 'pending' && <Button onClick={() => handleStatusUpdate(row._id)} >Approved</Button>
-                                    }
-                                    {
-                                        row.status === 'approved' && <Button>Done</Button>
-                                    }  </TableCell>
+        <div>
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+            <Container>
+                <Typography variant='h3' style={{ textAlign: 'center', justifyContent: "center", padding: '10px' }}>
+                    Manage Order
+                </Typography>
 
 
+
+                <TableContainer component={Paper}>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="right">Name </TableCell>
+                                <TableCell align="right">Package Name</TableCell>
+                                <TableCell align="right">Email</TableCell>
+                                <TableCell align="right">Status</TableCell>
+                                <TableCell align="right">Action</TableCell>
                             </TableRow>
-                        ))} */}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Container>
+                        </TableHead>
+                        <TableBody>
+                            {orders.map((row) => (
+
+                                <TableRow
+                                    key={row?._id}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+
+                                    <TableCell align="right">{row?.name}</TableCell>
+                                    <TableCell align="right">{row?.productName}</TableCell>
+                                    <TableCell align="right">{row?.email}</TableCell>
+                                    <TableCell align="right">
+                                        {
+                                            row.status === 'paid' && "paid"
+                                        }
+                                        {
+                                            row.status === 'approved' && "approved"
+                                        }
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {
+                                            row.status === 'paid' && <Button onClick={() => handleStatusUpdate(row?._id)} >Approved</Button>
+                                        }
+                                        {
+                                            row.status === 'approved' && <Button>Done</Button>
+                                        }  </TableCell>
+
+
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Container>
+        </div>
     );
 };
 

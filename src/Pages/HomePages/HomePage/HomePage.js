@@ -11,8 +11,7 @@ const HomePage = () => {
             <Header></Header>
             <Products4Sale></Products4Sale>
             <Reviews></Reviews>
-            <SpacialEdition></SpacialEdition>
-            <Blogs4HomePage></Blogs4HomePage>
+            <SpacialEdition></SpacialEdition> 
         </div>
     );
 };

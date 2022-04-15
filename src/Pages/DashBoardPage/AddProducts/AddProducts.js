@@ -17,7 +17,7 @@ const AddProducts = () => {
 
     const handleBookingSubmit = e => {
         // send to the server
- 
+
         fetch('http://localhost:5000/products', {
             method: 'POST',
             headers: {
@@ -38,10 +38,10 @@ const AddProducts = () => {
     return (
         <Container>
             <Typography variant='h3' style={{ textAlign: 'center', justifyContent: "center", padding: '10px' }}>
-                Add Services
+                Add Product's
             </Typography>
             {
-                added && <Alert severity="success">Made Admin successfully!</Alert>
+                added && <Alert severity="success">Added Product successfully!</Alert>
             }
             <form onSubmit={handleBookingSubmit}>
 

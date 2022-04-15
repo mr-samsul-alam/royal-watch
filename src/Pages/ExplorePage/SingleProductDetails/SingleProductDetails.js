@@ -6,21 +6,27 @@ import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import LinearProgress from '@mui/material/LinearProgress';
 import UseFireBase from '../../../Hooks/UseFireBase';
 import AddToCart from '../AddToCart/AddToCart';
 
 const SingleProductDetails = () => {
     const [product, setProduct] = useState({});
-
     const [quantity, setQuantity] = useState(1);
+    const [progress, setProgress] = React.useState(20);
+    const [buffer, setBuffer] = React.useState(30);
     const { user } = UseFireBase()
     const { id } = useParams()
     const navigate = useNavigate();
     useEffect(() => {
         const hello = async () => {
+            setBuffer(40)
+            setProgress(50)
             await fetch(`http://localhost:5000/products/${id}`)
                 .then(res => res.json())
                 .then(data => setProduct(data))
+            setBuffer(100)
+            setProgress(100)
         }
         hello()
     }, [id])
@@ -59,6 +65,7 @@ const SingleProductDetails = () => {
     return (
         <div>
             <NavigationBar></NavigationBar>
+            <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
             <Container>
                 <Grid container spacing={2} style={{ margin: '2px solid red' }}>
                     <Grid item xs={12} md={6}>
@@ -72,7 +79,7 @@ const SingleProductDetails = () => {
 
 
                         <Typography>
-                            {parseFloat(product?.price) }
+                            {parseFloat(product?.price)}
                         </Typography>
 
 

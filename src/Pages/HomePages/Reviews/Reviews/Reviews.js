@@ -13,13 +13,13 @@ const Reviews = () => {
     }, []) 
 
     return (
-        <Container style={{ padding: '50px' }} >
+        <Container style={{ marginTop: '80px' }} >
             <Typography variant="div" style={{ textAlign: 'center' }}>
                 <Typography variant='h3' style={{ fontWeight: "bolder" }}>
                     <span style={{ color: '#D8C3A5' }}>PEOPLE'S</span> REVIEW
                 </Typography>
             </Typography>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} style={{ padding: '50px' }}>
                 {
                     reviews.map(review => <ReviewCard key={review._id} review={review} ></ReviewCard>)
                 }
