@@ -48,8 +48,7 @@ export default function MyCart() {
     const [addToProduct, setAddToProduct] = React.useState(false)
     const [progress, setProgress] = React.useState(20);
     const [buffer, setBuffer] = React.useState(30);
-    const [carts, setCarts] = React.useState([])
-    console.log(user?.email);
+    const [carts, setCarts] = React.useState([]) 
 
 
     React.useEffect(() => {

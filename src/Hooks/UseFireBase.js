@@ -96,7 +96,7 @@ const UseFireBase = () => {
     }, [user.email])
 
 
-
+    console.log(admin);
 
     // this is using for Log Out
     const logout = () => {
