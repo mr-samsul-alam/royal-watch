@@ -8,7 +8,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Drawer from '@mui/material/Drawer';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -18,7 +17,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AddTaskIcon from '@mui/icons-material/AddTask';
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';
@@ -38,45 +36,26 @@ function Dashboard(props) {
         setMobileOpen(!mobileOpen);
     };
     const handleRoute = (text) => {
-
-        if (admin === true) {
-            switch (text) {
-                case "Home": navigate('/home')
-                    break;
-                case "Give Review": navigate('/dashboard/giveReview')
-                    break;
-                case "My Cart": navigate('/dashboard/myCart')
-                    break;
-                case "My Orders": navigate('/dashboard/orders')
-                    break;
-                case "Dashboard": navigate('/dashboard')
-                    break;
-                case "Make Admin": navigate('/dashboard/makeAdmin')
-                    break;
-                case "Add Products": navigate('/dashboard/addProducts')
-                    break;
-                case "Manage Order": navigate('/dashboard/manageOrder')
-                    break;
-                case "Update Product": navigate('/dashboard/updateProduct')
-                    break;
-                default: navigate('/dashboard')
-            }
-        }
-        else {
-            switch (text) {
-                case "Home": navigate('/home')
-                    break;
-                case "Give Review": navigate('/dashboard/giveReview')
-                    break;
-                case "My Orders": navigate('/dashboard/orders')
-                    break;
-                case "My Cart": navigate('/dashboard/myCart')
-                    break;
-                case "Dashboard": navigate('/dashboard')
-                    break;
-                default: navigate('/dashboard')
-            }
-
+        switch (text) {
+            case "Home": navigate('/home')
+                break;
+            case "Give Review": navigate('/dashboard/giveReview')
+                break;
+            case "My Cart": navigate('/dashboard/myCart')
+                break;
+            case "My Orders": navigate('/dashboard/orders')
+                break;
+            case "Dashboard": navigate('/dashboard')
+                break;
+            case "Make Admin": navigate('/dashboard/makeAdmin')
+                break;
+            case "Add Products": navigate('/dashboard/addProducts')
+                break;
+            case "Manage Order": navigate('/dashboard/manageOrder')
+                break;
+            case "Update Product": navigate('/dashboard/updateProduct')
+                break;
+            default: navigate('/dashboard')
         }
 
 
@@ -99,40 +78,32 @@ function Dashboard(props) {
                 </Typography></Toolbar>
             <Divider />
             <List>
-                {
-                    admin ? ['Home', 'DashBoard', 'My Cart', "My Orders", 'Give Review', " ", "Add Products", "Update Product", "Manage Order", "Make Admin",].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index === 0 && <ArrowBackIcon />}
-                                {index === 1 && <DashboardIcon />}
-                                {index === 2 && <AddShoppingCartIcon />}
-                                {index === 3 && <AddTaskIcon />}
-                                {index === 4 && <ReviewsIcon />}
-                                {index === 5 && <hr style={{ width: "200px", color: '#D8C3A5' }} />}
-                                {index === 6 && <AddCircleIcon />}
-                                {index === 7 && <UpdateOutlinedIcon />}
-                                {index === 8 && <ManageHistoryIcon />}
-                                {index === 9 && <AdminPanelSettingsIcon />}
-                                {index === 10 && <UpdateOutlinedIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} onClick={() => handleRoute(text)} />
-                        </ListItem>
-                    ))
-                        :
-                        ['Home', 'DashBoard', 'My Cart', "My Orders", 'Give Review'].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index === 0 && <ArrowBackIcon />}
-                                    {index === 1 && <DashboardIcon />}
-                                    {index === 2 && <AddShoppingCartIcon />}
-                                    {index === 3 && <InboxIcon />}
-                                    {index === 4 && <AddCircleIcon />}
-                                </ListItemIcon>
-                                <ListItemText primary={text} onClick={() => handleRoute(text)} />
+                {(['Home', 'DashBoard', 'My Cart', "My Orders", 'Give Review'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>
+                            {index === 0 && <ArrowBackIcon />}
+                            {index === 1 && <DashboardIcon />}
+                            {index === 2 && <AddShoppingCartIcon />}
+                            {index === 3 && <AddTaskIcon />}
+                            {index === 4 && <ReviewsIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} onClick={() => handleRoute(text)} />
 
-                            </ListItem>
-                        ))
-                }
+                    </ListItem>
+                )))}
+                <Divider  /> 
+                {admin && (["Add Products", "Update Product", "Manage Order", "Make Admin",].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>
+                            {index === 0 && <AddCircleIcon />}
+                            {index === 1 && <UpdateOutlinedIcon />}
+                            {index === 2 && <ManageHistoryIcon />}
+                            {index === 3 && <AdminPanelSettingsIcon />}
+                            {index === 4 && <UpdateOutlinedIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} onClick={() => handleRoute(text)} />
+                    </ListItem>
+                )))}
             </List>
         </div>
     );

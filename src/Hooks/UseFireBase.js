@@ -11,7 +11,7 @@ const UseFireBase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [authError, setAuthError] = useState('');
-    const [admin, setAdmin] = useState(false);
+    const [admin, setAdmin] = useState();
     let navigate = useNavigate();
 
     const auth = getAuth();
@@ -92,11 +92,10 @@ const UseFireBase = () => {
     useEffect(() => {
         fetch(`https://sheltered-depths-49982.herokuapp.com/users/${user.email}`)
             .then(res => res.json())
-            .then(data => setAdmin(data.admin))
-    }, [user.email])
-
-
-    console.log(admin);
+            .then(data => { 
+                setAdmin(data.admin)
+            })
+    }, [user.email]) 
 
     // this is using for Log Out
     const logout = () => {

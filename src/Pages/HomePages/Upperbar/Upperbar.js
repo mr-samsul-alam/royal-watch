@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 import React from 'react';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 const Upperbar = () => {
     return (
@@ -7,10 +8,9 @@ const Upperbar = () => {
             <Typography
                 noWrap
                 component="div"
-                height="20%" width="15%"
-                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+                sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}
             >
-                <img height="100%" width="100%" style={{ padding: '5px' }} src="https://cdn.shopify.com/s/files/1/2324/8827/files/Royal_Watch_Logo_PNG_Colour_480x480.png?v=1637904642" alt="Logo" />
+                <img height="10%" width="10%" style={{ padding: '5px' }} src="https://cdn.shopify.com/s/files/1/2324/8827/files/Royal_Watch_Logo_PNG_Colour_480x480.png?v=1637904642" alt="Logo" />
             </Typography>
             <Typography
                 noWrap

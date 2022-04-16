@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import NavigationBar from '../../Shared/NavigationBar/NavigationBar';
 import UseFireBase from '../../../Hooks/UseFireBase';
 const SignIn = () => {
@@ -26,6 +26,7 @@ const SignIn = () => {
         signUsingGoogle(location)
         console.log(location);
     }
+    const navigate = useNavigate();
     return (
         <>
             <NavigationBar></NavigationBar>
@@ -58,10 +59,11 @@ const SignIn = () => {
                         </NavLink>
                         {isLoading && <CircularProgress sx={{ mx: 'auto' }} />}
                         {user?.email && <Alert severity="success">Login successfully!</Alert>}
+                        {user?.email && navigate('/')}
                         {user?.email && (<NavLink
                             style={{ textDecoration: 'none', display: "block" }}
                             to="/home">
-                            <Button  variant="contained">Go To Home</Button>
+                            <Button variant="contained">Go To Home</Button>
                         </NavLink>)}
                         {authError && <Alert severity="error">{authError}</Alert>}
                     </form>

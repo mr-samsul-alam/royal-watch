@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router'; 
+import { useNavigate } from 'react-router';
 import UseFireBase from '../../../Hooks/UseFireBase';
 import Upperbar from '../../HomePages/Upperbar/Upperbar';
 import { Avatar } from '@mui/material';
@@ -72,8 +72,8 @@ const NavigationBar = () => {
         let i;
 
         /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-            hash = string.charCodeAt(i) + ((hash << 5) - hash);
+        for (i = 0; i < string?.length; i += 1) {
+            hash = string?.charCodeAt(i) + ((hash << 5) - hash);
         }
 
         let color = '#';
@@ -91,7 +91,7 @@ const NavigationBar = () => {
             sx: {
                 bgcolor: stringToColor(name),
             },
-            children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+            children: `${name?.split(' ')[0][0]}${name?.split(' ')[1][0]}`,
         };
     }
 
